@@ -1,0 +1,6 @@
+# ignore cmake
+/cmake-build-debug
+
+# ignore dotfiles from jetbrains vscode
+/.idea
+/.vscode
