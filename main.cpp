@@ -19,7 +19,7 @@ int main() {
     vector<Section> sectionVec;
     Section currentSection;
 
-    int sectionCount; // START of add section
+    int sectionCount; // START of addition section
     do {
         cout << "How many sections do you want?: ";
         cin >> sectionCount;
@@ -53,7 +53,7 @@ int main() {
             currentSection.tasks.push_back(currentTask); // asks the user for the task and adds it to the end of the vector in currentSection.tasks
         }
         sectionVec.push_back(currentSection); // adds the current section to the sectionVec vector
-    } // END of add section
+    } // END of addition section
 
     cout << "Name: " + currentSection.name;
     for (int i = 0; i < currentSection.tasks.size(); i++) { // temporary debugging code, will remove later
@@ -129,29 +129,105 @@ int main() {
         }
     } // END of removal section
 
-    selection = 0; // START of viewing section
-
-    for (int i = 0; i < sectionVec.size(); i++) {
-        cout << "Section #" << i + 1 << ": " << sectionVec.at(i).name << endl;
+    if (sectionVec.empty()) { // START of viewing section
+        cout << "There are no sections to view." << endl;
     }
+    else {
+        for (int i = 0; i < sectionVec.size(); i++) {
+            cout << "Section #" << i + 1 << ": " << sectionVec.at(i).name << endl;
+        }
+
+        int sectionChosen;
 
         do {
             cout << "Which section would you like to view?: ";
-            cin >> selection;
-            wipeCin();
-            if (!(selection >= 1 && selection <= sectionVec.size())) {
+            cin >> sectionChosen;
+            wipeCin(); // select section to view
+            if (!(sectionChosen >= 1 && sectionChosen <= sectionVec.size())) {
                 cout << "Please choose a valid number that corresponds to a section." << endl;
             }
-        } while (!(selection >= 1 && selection <= sectionVec.size()));
+        } while (!(sectionChosen >= 1 && sectionChosen <= sectionVec.size()));
 
-    for (int i = 0; i < sectionVec.at(selection - 1).tasks.size(); i++) {
-        cout << "Task #" << i + 1 << ": " << sectionVec.at(selection - 1).tasks.at(i) << endl;
+        for (int i = 0; i < sectionVec.at(sectionChosen - 1).tasks.size(); i++) {
+            cout << "Task #" << i + 1 << ": " << sectionVec.at(sectionChosen - 1).tasks.at(i) << endl; // print all tasks in the section
+        }
     } // END of viewing section
 
+    selection = 0; // START of renaming section
+
+    do {
+        cout << "Would you like to rename a section (type '1') or a task from a section (type '2')?: ";
+        cin >> selection;
+        wipeCin();
+        if (!(selection == 1 || selection == 2)) {
+            cout << "Please choose a valid option." << endl;
+        }
+    } while (!(selection == 1 || selection == 2));
+
+    if (selection == 1) { // rename section choice
+        if (sectionVec.empty()) {
+            cout << "There are no sections to rename." << endl;
+        }
+        else {
+            int sectionChosen;
+
+            for (int i = 0; i < sectionVec.size(); i++) {
+                cout << "Section #" << i + 1 << ": " << sectionVec.at(i).name << endl;
+            }
+
+            do {
+                cout << "Which section would you like to rename?: ";
+                cin >> sectionChosen;
+                wipeCin(); // select section for renaming
+                if (!(sectionChosen >= 1 && sectionChosen <= sectionVec.size())) {
+                    cout << "Please choose a valid number that corresponds to a section." << endl;
+                }
+            } while (!(sectionChosen >= 1 && sectionChosen <= sectionVec.size()));
+
+            cout << "What would you like to rename the section to?: ";
+            getline(cin, sectionVec.at(sectionChosen - 1).name); // grab the new name and replace it
+        }
+    }
+    else if (selection == 2) { // rename task choice
+
+        for (int i = 0; i < sectionVec.size(); i++) {
+            cout << "Section #" << i + 1 << ": " << sectionVec.at(i).name << endl;
+        }
+
+        int sectionChosen;
+
+        do {
+            cout << "Which section has a task that you would like to rename?: ";
+            cin >> sectionChosen;
+            wipeCin(); // select section for renaming
+            if (!(sectionChosen >= 1 && sectionChosen <= sectionVec.size())) {
+                cout << "Please choose a valid number that corresponds to a section." << endl;
+            }
+        } while (!(sectionChosen >= 1 && sectionChosen <= sectionVec.size()));
+
+        int taskChosen;
+
+        for (int i = 0; i < sectionVec.at(sectionChosen - 1).tasks.size(); i++) {
+            cout << "Task #" << i + 1 << ": " << sectionVec.at(sectionChosen - 1).tasks.at(i) << endl;
+        }
+
+        do {
+            cout << "Which task do you want to rename?: ";
+            cin >> taskChosen;
+            wipeCin(); // select section for renaming
+            if (!(taskChosen >= 1 && taskChosen <= sectionVec.at(sectionChosen - 1).tasks.size())) {
+                cout << "Please choose a valid number that corresponds to a task." << endl;
+            }
+        } while (!(taskChosen >= 1 && taskChosen <= sectionVec.at(sectionChosen - 1).tasks.size()));
+
+        cout << "What would you like to rename the task to?: ";
+        getline(cin, sectionVec.at(sectionChosen - 1).tasks.at(taskChosen - 1)); // grab the new name and replace it
+
+    } // END of renaming section
+
     // TODO:
-    //  - view sections/tasks
-    //  - rename tasks
     //  - save to file
+    //  - ability to cancel at any time
     //  - add deadlines??
     //  - work with curses.h to make it better
     //  - possible imgui implementation?

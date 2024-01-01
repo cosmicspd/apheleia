@@ -1,8 +1,8 @@
-# apheleia 0.0.1
+# apheleia 0.1.0
 
 "In Greek mythology, Apheleia was the spirit and personification of ease, simplicity and primitivity in the good sense, 'the good old days'." - [Wikipedia](https://en.wikipedia.org/wiki/Apheleia)
 
-apheleia is a CLI-based planner/agenda written in C++. It has very basic functionality at the current moment such as adding, removing, and viewing tasks. I plan to add more functionality in the future, but it will take a little.
+apheleia is a CLI-based planner/agenda written in C++. It has very basic functionality at the current moment such as adding/removing/viewing tasks and more! I plan to add more functionality in the future, but it will take a little.
 
 ## Usage
 
