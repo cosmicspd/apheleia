@@ -62,7 +62,9 @@ int main() {
 
     cout << endl;
 
-    do { // START of removal section
+    selection = 0; // START of removal section
+
+    do {
         cout << "Would you like to remove a section (type '1') or a task from a section (type '2')?: ";
         cin >> selection;
         wipeCin();
@@ -126,6 +128,25 @@ int main() {
             sectionVec.at(sectionChosen - 1).tasks.erase(sectionVec.at(sectionChosen - 1).tasks.begin() + (taskChosen - 1)); // removes the task at the given index
         }
     } // END of removal section
+
+    selection = 0; // START of viewing section
+
+    for (int i = 0; i < sectionVec.size(); i++) {
+        cout << "Section #" << i + 1 << ": " << sectionVec.at(i).name << endl;
+    }
+
+        do {
+            cout << "Which section would you like to view?: ";
+            cin >> selection;
+            wipeCin();
+            if (!(selection >= 1 && selection <= sectionVec.size())) {
+                cout << "Please choose a valid number that corresponds to a section." << endl;
+            }
+        } while (!(selection >= 1 && selection <= sectionVec.size()));
+
+    for (int i = 0; i < sectionVec.at(selection - 1).tasks.size(); i++) {
+        cout << "Task #" << i + 1 << ": " << sectionVec.at(selection - 1).tasks.at(i) << endl;
+    } // END of viewing section
 
     // TODO:
     //  - view sections/tasks
