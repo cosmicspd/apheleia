@@ -68,10 +68,10 @@ int main() {
         cout << "Would you like to remove a section (type '1') or a task from a section (type '2')?: ";
         cin >> selection;
         wipeCin();
-        if (!(selection == 1 || selection == 2)) {
+        if (selection != 1 && selection != 2) {
             cout << "Please choose a valid option." << endl;
         }
-    } while (!(selection == 1 || selection == 2));
+    } while (selection != 1 && selection != 2);
 
     if (selection == 1) { // remove section choice
         int sectionChosen;
@@ -84,10 +84,10 @@ int main() {
             cout << "Which section would you like to remove?: ";
             cin >> sectionChosen;
             wipeCin(); // asks what section the user would like to remove and removes it
-            if (!(sectionChosen >= 1 && sectionChosen <= sectionVec.size())) {
+            if (sectionChosen < 1 || sectionChosen > sectionVec.size()) {
                 cout << "Please choose a valid number that corresponds to a section." << endl;
             }
-        } while (!(sectionChosen >= 1 && sectionChosen <= sectionVec.size())); // loops until the number is a valid section
+        } while (sectionChosen < 1 || sectionChosen > sectionVec.size()); // loops until the number is a valid section
 
         sectionVec.erase(sectionVec.begin() + (sectionChosen - 1)); // erases the section at the given index
     }
@@ -102,10 +102,10 @@ int main() {
             cout << "Which section would you like to remove a task from?: ";
             cin >> sectionChosen;
             wipeCin();
-            if (!(sectionChosen >= 1 && sectionChosen <= sectionVec.size())) { // code of section selection from earlier
+            if (sectionChosen < 1 || sectionChosen > sectionVec.size()) { // code of section selection from earlier
                 cout << "Please choose a valid number that corresponds to a section." << endl;
             }
-        } while (!(sectionChosen >= 1 && sectionChosen <= sectionVec.size()));
+        } while (sectionChosen < 1 || sectionChosen > sectionVec.size());
 
         if (sectionVec.at(sectionChosen - 1).tasks.empty()) { // if the task number is empty then it will short circuit the code
             cout << "This section has no tasks." << endl;
@@ -121,10 +121,10 @@ int main() {
                 cout << "Which task would you like to remove?: ";
                 cin >> taskChosen;
                 wipeCin(); // selects task and repeats until the task is valid
-                if (!(taskChosen >= 1 && taskChosen <= sectionVec.at(sectionChosen - 1).tasks.size())) {
+                if (taskChosen < 1 || taskChosen > sectionVec.at(sectionChosen - 1).tasks.size()) {
                     cout << "Please choose a valid number that corresponds to a task." << endl;
                 }
-            } while (!(taskChosen >= 1 && taskChosen <= sectionVec.at(sectionChosen - 1).tasks.size()));
+            } while (taskChosen < 1 || taskChosen > sectionVec.at(sectionChosen - 1).tasks.size());
             sectionVec.at(sectionChosen - 1).tasks.erase(sectionVec.at(sectionChosen - 1).tasks.begin() + (taskChosen - 1)); // removes the task at the given index
         }
     } // END of removal section
@@ -143,10 +143,10 @@ int main() {
             cout << "Which section would you like to view?: ";
             cin >> sectionChosen;
             wipeCin(); // select section to view
-            if (!(sectionChosen >= 1 && sectionChosen <= sectionVec.size())) {
+            if (sectionChosen < 1 || sectionChosen > sectionVec.size()) {
                 cout << "Please choose a valid number that corresponds to a section." << endl;
             }
-        } while (!(sectionChosen >= 1 && sectionChosen <= sectionVec.size()));
+        } while (sectionChosen < 1 || sectionChosen > sectionVec.size());
 
         for (int i = 0; i < sectionVec.at(sectionChosen - 1).tasks.size(); i++) {
             cout << "Task #" << i + 1 << ": " << sectionVec.at(sectionChosen - 1).tasks.at(i) << endl; // print all tasks in the section
@@ -159,10 +159,10 @@ int main() {
         cout << "Would you like to rename a section (type '1') or a task from a section (type '2')?: ";
         cin >> selection;
         wipeCin();
-        if (!(selection == 1 || selection == 2)) {
+        if (selection != 1 && selection != 2) {
             cout << "Please choose a valid option." << endl;
         }
-    } while (!(selection == 1 || selection == 2));
+    } while (selection != 1 && selection != 2);
 
     if (selection == 1) { // rename section choice
         if (sectionVec.empty()) {
@@ -179,10 +179,10 @@ int main() {
                 cout << "Which section would you like to rename?: ";
                 cin >> sectionChosen;
                 wipeCin(); // select section for renaming
-                if (!(sectionChosen >= 1 && sectionChosen <= sectionVec.size())) {
+                if (sectionChosen < 1 || sectionChosen > sectionVec.size()) {
                     cout << "Please choose a valid number that corresponds to a section." << endl;
                 }
-            } while (!(sectionChosen >= 1 && sectionChosen <= sectionVec.size()));
+            } while (sectionChosen < 1 || sectionChosen > sectionVec.size());
 
             cout << "What would you like to rename the section to?: ";
             getline(cin, sectionVec.at(sectionChosen - 1).name); // grab the new name and replace it
@@ -200,10 +200,10 @@ int main() {
             cout << "Which section has a task that you would like to rename?: ";
             cin >> sectionChosen;
             wipeCin(); // select section for renaming
-            if (!(sectionChosen >= 1 && sectionChosen <= sectionVec.size())) {
+            if (sectionChosen < 1 || sectionChosen > sectionVec.size()) {
                 cout << "Please choose a valid number that corresponds to a section." << endl;
             }
-        } while (!(sectionChosen >= 1 && sectionChosen <= sectionVec.size()));
+        } while (sectionChosen < 1 || sectionChosen > sectionVec.size());
 
         int taskChosen;
 
@@ -215,10 +215,10 @@ int main() {
             cout << "Which task do you want to rename?: ";
             cin >> taskChosen;
             wipeCin(); // select section for renaming
-            if (!(taskChosen >= 1 && taskChosen <= sectionVec.at(sectionChosen - 1).tasks.size())) {
+            if (taskChosen < 1 || taskChosen > sectionVec.at(sectionChosen - 1).tasks.size()) {
                 cout << "Please choose a valid number that corresponds to a task." << endl;
             }
-        } while (!(taskChosen >= 1 && taskChosen <= sectionVec.at(sectionChosen - 1).tasks.size()));
+        } while (taskChosen < 1 || taskChosen > sectionVec.at(sectionChosen - 1).tasks.size());
 
         cout << "What would you like to rename the task to?: ";
         getline(cin, sectionVec.at(sectionChosen - 1).tasks.at(taskChosen - 1)); // grab the new name and replace it
