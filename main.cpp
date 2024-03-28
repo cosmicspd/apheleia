@@ -254,8 +254,7 @@ int main() {
     } // end of saving to file section
 
     // TODO:
-    //  - input file through cmd argument
-    //  - save to file
+    //  - input file through cmd argument and function
     //  - ability to cancel at any time
     //  - add deadlines??
     //  - work with curses.h to make it better

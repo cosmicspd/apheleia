@@ -10,7 +10,7 @@ Currently, there is no .exe and if you want to then feel free to compile it your
 
 ## Compilation
 
-// insert compilation help here :)
+so far, you need to download the json library and put the ```json.hpp``` from the single-include folder inside of ```.\include\nlohmann```
 
 ## Credits
 

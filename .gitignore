@@ -4,3 +4,6 @@
 # ignore dotfiles from jetbrains vscode
 /.idea
 /.vscode
+
+# ignore include libraries
+/include
