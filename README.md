@@ -1,4 +1,4 @@
-# apheleia 0.1.0
+# apheleia 0.1.1
 
 "In Greek mythology, Apheleia was the spirit and personification of ease, simplicity and primitivity in the good sense, 'the good old days'." - [Wikipedia](https://en.wikipedia.org/wiki/Apheleia)
 
@@ -14,7 +14,7 @@ Currently, there is no .exe and if you want to then feel free to compile it your
 
 ## Credits
 
-// insert credits here :)
 - stack overflow - helped at 3 am when i needed it the most
+- [nlohmann/json](https://github.com/nlohmann/json) - useful json library for file support
 
 [![wakatime](https://wakatime.com/badge/user/018cb3d3-56db-426e-852f-5282ba3a04e4/project/018cb9ec-d76c-42f3-a3a5-c2983c095f02.svg)](https://wakatime.com/badge/user/018cb3d3-56db-426e-852f-5282ba3a04e4/project/018cb9ec-d76c-42f3-a3a5-c2983c095f02)

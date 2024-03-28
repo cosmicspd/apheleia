@@ -1,7 +1,11 @@
 #include <iostream>
+#include <fstream>
 #include <vector>
 #include <limits>
+#include <nlohmann/json.hpp>
+
 using namespace std;
+using json = nlohmann::json;
 
 void wipeCin() { // clear the stdin stream; should use after every cin
     cin.clear();
@@ -225,7 +229,32 @@ int main() {
 
     } // END of renaming section
 
+    json jsonArray; // start of parse to json, creates an object to hold the data
+
+    for (Section &current_section : sectionVec) { // iterates through each section in the vector, creates a temporary object to hold the name and tasks, then adds it to the jsonArray object
+        json jsonObj;
+        jsonObj["name"] = current_section.name;
+        jsonObj["tasks"] = current_section.tasks;
+        jsonArray.push_back(jsonObj);
+    } // end of parse to json
+
+    string jsonString = jsonArray.dump(4); // the entirety of the saving feature is held up by these two lines
+    cout << jsonString << endl; // for some reason jsonArray.dump() does not work in cmd and powershell without this code, god save me
+
+    ofstream outFile; // start of saving to file section
+    outFile.open("output.json"); // open output.json file
+
+    if (outFile.is_open()) { // check if output.json was successfully opened
+        outFile << jsonArray.dump(4) << std::endl;; // writes the jsonArray object to file
+        outFile.close(); // close output.json file
+        cout << "Successfully written to disk!" << endl;
+    }
+    else { // if not throw error
+        cout << "Error opening file! Cannot save to disk!" << endl;
+    } // end of saving to file section
+
     // TODO:
+    //  - input file through cmd argument
     //  - save to file
     //  - ability to cancel at any time
     //  - add deadlines??
